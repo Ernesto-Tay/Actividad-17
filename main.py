@@ -100,7 +100,8 @@ while True:
             main_carrito.display()
 
         case "3":
-            pass
+            main_carrito.orden()
+
         case "4":
             pass
         case "5":
