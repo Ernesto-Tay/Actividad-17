@@ -29,10 +29,12 @@ class Carrito:
 
     def orden(self):
         orientacion = input("¿Desea que el carrito se ordene de fomrma ascendente? (s/n): ").lower()
-        if orientacion.startswith("n"):
+        if orientacion.startswith("s"):
             self.carrito.sort()
-        else:
+        elif orientacion.startswith("n"):
             self.carrito.sort(reverse = True)
+        else:
+            print("Opción no válida")
 
     def clear_carrito(self):
         self.carrito.clear()
@@ -49,4 +51,20 @@ class Carrito:
 
 main_carrito = Carrito()
 
-
+while True:
+    print("\n\n----------Bienvenido al carrito----------\n1. Agregar productos\n2. Ver el carrito\n3. Ordenar carrito\n4. Eliminar producto del carrito\n5. Salir")
+    select = input("Selccione una opción: ")
+    match select:
+        case "1":
+            pass
+        case "2":
+            pass
+        case "3":
+            pass
+        case "4":
+            pass
+        case "5":
+            print("Saliendo...")
+            break
+        case _:
+            print("Opción inválida, intente nuevamente")
