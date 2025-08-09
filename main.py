@@ -50,7 +50,7 @@ class Carrito:
         exist = False
         location = False
         for i in self.carrito:
-            if i == item:
+            if i["Nombre"] == item:
                 exist = True
                 location = self.carrito.index(item)
                 break
@@ -59,7 +59,7 @@ class Carrito:
 main_carrito = Carrito()
 
 while True:
-    print("\n\n----------Bienvenido al carrito----------\n1. Agregar productos\n2. Ver el carrito\n3. Ordenar carrito\n4. Eliminar productos del carrito\n5. Salir")
+    print("\n\n----------Bienvenido al carrito----------\n1. Agregar productos\n2. Ver el carrito\n3. Ordenar carrito\n4. Eliminar productos del carrito\n5. Buscar producto en el carrito\n6. Salir")
     select = input("Selccione una opción (1-5): ")
     match select:
         case "1":
@@ -104,7 +104,11 @@ while True:
 
         case "4":
             pass
+
         case "5":
+            pass
+
+        case "6":
             print("Saliendo...")
             break
         case _:
