@@ -11,6 +11,9 @@ class Carrito:
         }
         self.carrito.append(item)
 
+    def largo(self):
+        return len(self.carrito)
+
     def remove(self, nombre):
         deletion = False
         for item in self.carrito:
@@ -20,6 +23,7 @@ class Carrito:
                 break
         if not deletion:
             print("El objeto buscado no existe")
+        return deletion
 
     def display(self):
         if not self.carrito:
@@ -63,7 +67,7 @@ while True:
     select = input("Selccione una opción (1-5): ")
     match select:
         case "1":
-            print(" Productos disponibles ".center(40, "-"))
+            print("\n Productos disponibles ".center(40, "-"))
             for producto in productos:
                 print(f"Nombre: {producto['Nombre']} Precio: Q{producto['Precio']}")
 
@@ -103,7 +107,29 @@ while True:
             main_carrito.orden()
 
         case "4":
-            pass
+            print(f"\nSu carrito tiene {main_carrito.largo()} productos")
+            while True:
+                try:
+                    del_cant = int(input("¿Cuántos productos va a eliminar?: "))
+                    if del_cant < 1:
+                        print("La cantidad de productos debe ser mayor a 0")
+                    elif del_cant > main_carrito.largo():
+                        print("No hay tantos productos en el carrito")
+                    elif del_cant == main_carrito.largo():
+                        main_carrito.clear_carrito()
+                        print("Carrito limpiado exitosamente")
+                    else:
+                        break
+                except ValueError:
+                    print("Ingrese un número entero")
+
+            for i in range(del_cant):
+                while True:
+                    prod_name = input("Ingrese el nombre del producto: ")
+                    trial = main_carrito.remove(prod_name)
+                    if trial:
+                        break
+
 
         case "5":
             pass
