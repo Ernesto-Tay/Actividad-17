@@ -36,13 +36,13 @@ class Carrito:
             print("El carrito está vacío")
         else:
             total = 0
-            print("\n Productos adquiridos ".center(50, "-"))
-            print("Nombre".ljust(15) + "Precio".ljust(15) + "Cantidad".ljust(15) +"Subtotal".ljust(15))
+            print("\n"+" Productos adquiridos ".center(50, "-"))
+            print("Nombre".ljust(20) + "Precio".ljust(15) + "Cantidad".ljust(15) +"Subtotal".ljust(15))
             for i in self.carrito:
                 subtotal = i["Precio"] * i["Cantidad"]
                 total += subtotal
-                print(i["Nombre"].ljust(15) + "Q"+str(i["Precio"]).ljust(15) + str(i["Cantidad"]).ljust(15) + f"Subtotal: Q{subtotal}".ljust(15))
-            print(f"TOTAL: Q{total}")
+                print(i["Nombre"].ljust(20) + "Q"+str(i["Precio"]).ljust(15) + str(i["Cantidad"]).ljust(15) + f"Q{subtotal}".ljust(15))
+            print(f"\nTOTAL: Q{total}".rjust(55))
 
     def orden(self):
         orientacion = input("¿Desea que el carrito se ordene de fomrma ascendente? (s/n): ").lower()
@@ -73,13 +73,13 @@ while True:
     select = input("Selccione una opción (1-5): ")
     match select:
         case "1":
-            print("\n Productos disponibles ".center(40, "-"))
+            print("\n   "+" Productos disponibles ".center(40, "-"))
             for producto in productos:
-                print(f"Nombre: {producto['Nombre']} Precio: Q{producto['Precio']}")
+                print(f"Nombre: {producto['Nombre']}".ljust(30) + f"Precio: Q{producto['Precio']}".ljust(25))
 
             while True:
                 try:
-                    nombre_select = input("Seleccione un producto: ").lower().capitalize()
+                    nombre_select = input("\nIngrese el nombre del producto que desea añadir: ").lower().capitalize()
                     cantidad_select = int(input("¿cuántos productos va a adquirir?: "))
                     producto_ok = True
                     cantidad_ok = True
