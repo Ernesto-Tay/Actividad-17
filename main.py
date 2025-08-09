@@ -130,9 +130,13 @@ while True:
                     if trial:
                         break
 
-
         case "5":
-            pass
+            producto_search = input("Ingrese el nombre del producto a buscar: ")
+            exist, location = main_carrito.item_search(producto_search)
+            if exist:
+                print(f"El producto se encuentra en la posición {location+1} en el orden actual del carrito")
+            else:
+                print("El producto no existe")
 
         case "6":
             print("Saliendo...")
