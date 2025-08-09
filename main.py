@@ -1,4 +1,4 @@
-productos = [{"Nombre": "Cartón de huevos","Tipo": "Comida" , "Precio": 35},{"Nombre": "Queso","Tipo": "Comida" , "Precio": 20},{"Nombre": "Macarrones","Tipo": "Comida" , "Precio": 10},{"Nombre": "Shampoo","Tipo": "Higiene" , "Precio": 60},{"Nombre": "Jabón","Tipo": "Higiene" , "Precio": 5},{"Nombre": "Detergente","Tipo": "Limpieza" , "Precio": 30},{"Nombre": "Cloro","Tipo": "Limpieza" , "Precio": 40},{"Nombre": "Secadora de pelo","Tipo": "Belleza" , "Precio": 150},{"Nombre": "Pintauñas","Tipo": "Belleza" , "Precio": 70},{"Nombre": "Camisa","Tipo": "Ropa" , "Precio": 70 },{"Nombre": "Pantalón","Tipo": "Ropa" , "Precio": 125}]
+productos = [{"Nombre": "Cartón de huevos", "Precio": 35},{"Nombre": "Queso", "Precio": 20},{"Nombre": "Macarrones", "Precio": 10},{"Nombre": "Shampoo", "Precio": 60},{"Nombre": "Jabón", "Precio": 5},{"Nombre": "Detergente", "Precio": 30},{"Nombre": "Cloro", "Precio": 40},{"Nombre": "Secadora de pelo", "Precio": 150},{"Nombre": "Pintauñas", "Precio": 70},{"Nombre": "Camisa", "Precio": 70 },{"Nombre": "Pantalón", "Precio": 125}]
 class Carrito:
     def __init__(self):
         self.carrito = []
@@ -22,10 +22,13 @@ class Carrito:
             print("El objeto buscado no existe")
 
     def display(self):
-        print(" Productos adquiridos ".center(50, "-"))
-        print("Nombre".ljust(15) + "Precio".ljust(15) + "Cantidad".ljust(15))
-        for i in self.carrito:
-            print(i.Nombre.ljust(15) + i.Precio.ljust(15) + i.Cantidad.ljust(15))
+        if not self.carrito:
+            print("El carrito está vacío")
+        else:
+            print(" Productos adquiridos ".center(50, "-"))
+            print("Nombre".ljust(15) + "Precio".ljust(15) + "Cantidad".ljust(15))
+            for i in self.carrito:
+                print(i.Nombre.ljust(15) + i.Precio.ljust(15) + i.Cantidad.ljust(15))
 
     def orden(self):
         orientacion = input("¿Desea que el carrito se ordene de fomrma ascendente? (s/n): ").lower()
@@ -52,11 +55,43 @@ class Carrito:
 main_carrito = Carrito()
 
 while True:
-    print("\n\n----------Bienvenido al carrito----------\n1. Agregar productos\n2. Ver el carrito\n3. Ordenar carrito\n4. Eliminar producto del carrito\n5. Salir")
-    select = input("Selccione una opción: ")
+    print("\n\n----------Bienvenido al carrito----------\n1. Agregar productos\n2. Ver el carrito\n3. Ordenar carrito\n4. Eliminar productos del carrito\n5. Salir")
+    select = input("Selccione una opción (1-5): ")
     match select:
         case "1":
-            pass
+            print(" Productos disponibles ".center(40, "-"))
+            for producto in productos:
+                print(f"Nombre: {producto['Nombre']} Precio: Q{producto['Precio']}")
+
+            while True:
+                try:
+                    nombre_select = input("Seleccione un producto: ").lower().capitalize()
+                    cantidad_select = int(input("¿cuántos productos va a adquirir?: "))
+                    producto_ok = True
+                    cantidad_ok = True
+                    if nombre_select not in any(producto["Nombre"] for producto in productos):
+                        cantidad_ok = False
+                        print("El producto seleccionado no existe")
+
+                    if cantidad_select < 1:
+                        cantidad_ok = False
+                        print("La cantidad de productos debe ser positiva")
+
+                    if producto_ok and cantidad_ok:
+                        nombre = nombre_select
+                        precio = 0
+                        for producto in productos:
+                            if producto["Nombre"] == nombre:
+                                precio = producto["Precio"]
+                        cantidad = cantidad_select
+                        main_carrito.add(nombre,precio,cantidad)
+                        break
+                except ValueError:
+                    print("La cantidad de productos debe ser un entero")
+                except Exception as e:
+                    print("Error inesperado: ",e)
+
+
         case "2":
             pass
         case "3":
