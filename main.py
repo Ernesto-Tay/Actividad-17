@@ -4,6 +4,12 @@ class Carrito:
         self.carrito = []
 
     def add(self,nombre,precio,cantidad):
+        for item in self.carrito:
+            if item["Nombre"] == nombre:
+                item_exist = True
+                item["Cantidad"] += cantidad
+                break
+
         item = {
             "Nombre": nombre,
             "Precio": precio,
@@ -35,7 +41,7 @@ class Carrito:
             for i in self.carrito:
                 subtotal = i["Precio"] * i["Cantidad"]
                 total += subtotal
-                print(i.Nombre.ljust(15) + "Q"+str(i.Precio).ljust(15) + str(i.Cantidad).ljust(15) + f"Subtotal: Q{subtotal}".ljust(15))
+                print(i["Nombre"].ljust(15) + "Q"+str(i["Precio"]).ljust(15) + str(i["Cantidad"]).ljust(15) + f"Subtotal: Q{subtotal}".ljust(15))
             print(f"TOTAL: Q{total}")
 
     def orden(self):
