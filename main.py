@@ -10,12 +10,13 @@ class Carrito:
                 item["Cantidad"] += cantidad
                 break
 
-        item = {
-            "Nombre": nombre,
-            "Precio": precio,
-            "Cantidad": cantidad
-        }
-        self.carrito.append(item)
+        else:
+            item = {
+                "Nombre": nombre,
+                "Precio": precio,
+                "Cantidad": cantidad
+            }
+            self.carrito.append(item)
 
     def largo(self):
         return len(self.carrito)
