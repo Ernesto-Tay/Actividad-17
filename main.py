@@ -25,10 +25,14 @@ class Carrito:
         if not self.carrito:
             print("El carrito está vacío")
         else:
-            print(" Productos adquiridos ".center(50, "-"))
-            print("Nombre".ljust(15) + "Precio".ljust(15) + "Cantidad".ljust(15))
+            total = 0
+            print("\n Productos adquiridos ".center(50, "-"))
+            print("Nombre".ljust(15) + "Precio".ljust(15) + "Cantidad".ljust(15) +"Subtotal".ljust(15))
             for i in self.carrito:
-                print(i.Nombre.ljust(15) + i.Precio.ljust(15) + i.Cantidad.ljust(15))
+                subtotal = i.Precio * i.Cantidad
+                total += subtotal
+                print(i.Nombre.ljust(15) + "Q"+i.Precio.ljust(15) + i.Cantidad.ljust(15) + f"Subtotal: Q{subtotal}".ljust(15))
+            print(f"TOTAL: Q{total}")
 
     def orden(self):
         orientacion = input("¿Desea que el carrito se ordene de fomrma ascendente? (s/n): ").lower()
@@ -93,7 +97,8 @@ while True:
 
 
         case "2":
-            pass
+            main_carrito.display()
+
         case "3":
             pass
         case "4":
